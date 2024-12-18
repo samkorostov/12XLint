@@ -7,8 +7,7 @@
 - [x] Indentation checks (TODO: make indentation 
 - [x] Naming checks (Variable/method/constant/class naming conventions)
 - [ ] Comprehensive testing for all basic functionality
-- [ ] Commenting related checks (are comments present, in the right place, etc)
-- [ ] More niche checks, TBD exactly what needs to be done
+- [ ] Everything else
 
 ### Dependencies:
 - [JavaParser](https://github.com/javaparser/javaparser)
