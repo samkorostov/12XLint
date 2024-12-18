@@ -1,4 +1,4 @@
-package checks;
+package checks.formatting;
 
 public class TestSingleLongLine {
         public static void main(String[] args) {

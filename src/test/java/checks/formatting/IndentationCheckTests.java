@@ -1,4 +1,4 @@
-package checks;
+package checks.formatting;
 
 import com.github.javaparser.JavaParser;
 import com.github.javaparser.ast.CompilationUnit;

@@ -1,4 +1,4 @@
-package checks;
+package checks.formatting;
 
 import com.github.javaparser.JavaParser;
 import com.github.javaparser.ast.CompilationUnit;
@@ -7,7 +7,6 @@ import org.linter.checks.formatting.LongLineCheck;
 import org.linter.core.Check;
 import org.linter.core.Violation;
 
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;

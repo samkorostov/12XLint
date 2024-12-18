@@ -1,12 +1,20 @@
 package org.linter.core;
 import java.io.IOException;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Optional;
 
 import com.github.javaparser.JavaParser;
 import com.github.javaparser.ast.CompilationUnit;
+import org.linter.checks.formatting.IndentationCheck;
+import org.linter.checks.formatting.LongLineCheck;
+import org.linter.checks.formatting.OneStatementPerLineCheck;
+import org.linter.checks.naming.ClassNamingCheck;
+import org.linter.checks.naming.ConstantNamingCheck;
+import org.linter.checks.naming.MethodNamingCheck;
+import org.linter.checks.naming.VariableNamingCheck;
 
 /**
  * This class functions as a linter for CSE 12X Teaching assistants at University of Washington
@@ -24,8 +32,8 @@ public class Linter {
      * This will be a linter that lints according to CSE12X code quality guidelines
      * TODO: Implement selective check adding so quality checks can be adjusted
      */
-    public Linter() {
-        checks = new ArrayList<>();
+    public Linter(List<Check> checks) {
+        this.checks = checks;
         // TODO: Implement a way to select which checks to be performed? Maybe a config file?
     }
 
@@ -54,5 +62,29 @@ public class Linter {
             throw new RuntimeException(e);
         }
 
+    }
+
+    /**
+     * This is for testing complete functionality as I go as it's significantly easier to read
+     * output than write an insane amount of assertEquals's.
+     */
+    public static void main(String[] args)  {
+        Path path = Paths.get("src/test/java/linter/multipleformattingandnamingerrors.java");
+        List<Check> checks  = new ArrayList<>();
+        checks.add(new LongLineCheck());
+        checks.add(new IndentationCheck());
+        checks.add(new OneStatementPerLineCheck());
+        checks.add(new VariableNamingCheck());
+        checks.add(new MethodNamingCheck());
+        checks.add(new ConstantNamingCheck());
+        checks.add(new ClassNamingCheck());
+
+
+        Linter linter = new Linter(checks);
+        Optional<List<Violation>> violationList = linter.lint(path);
+        List<Violation> violations = violationList.get();
+        for (Violation violation : violations) {
+            System.out.println(violation);
+        }
     }
 }

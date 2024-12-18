@@ -16,11 +16,11 @@ public class MethodNamingCheck extends Check {
     public Optional<List<Violation>> apply(CompilationUnit cu) {
         List<Violation> violations = new ArrayList<>();
         cu.findAll(MethodDeclaration.class).forEach(methodDeclaration -> {
-            String methodName = methodDeclaration.getNameAsString();
-            if (!methodName.matches(CAMEL_CASE)) {
-                methodDeclaration.getName().getRange().ifPresent(range ->
-                        violations.add(new Violation(ERROR_MESSAGE, range.begin.line)));
-            }
+                String methodName = methodDeclaration.getNameAsString();
+                if (!methodName.matches(CAMEL_CASE)) {
+                    methodDeclaration.getName().getRange().ifPresent(range ->
+                            violations.add(new Violation(ERROR_MESSAGE, range.begin.line)));
+                }
         });
         return violations.isEmpty() ? Optional.empty() : Optional.of(violations);
     }
