@@ -1,6 +1,6 @@
 package linter;
 
-
+// Note: don't hate me all the issues here are deliberate
 public class multipleformattingandnamingerrors { // Class name should be in PascalCase
 
     public static final int MAX_VALUE = 100; // Correct constant name
