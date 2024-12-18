@@ -11,4 +11,4 @@
 - [ ] More niche checks, TBD exactly what needs to be done
 
 ### Dependencies:
-- JavaParser
+- [JavaParser](https://github.com/javaparser/javaparser)
