@@ -7,14 +7,15 @@
 
 ```bash
     mvn clean package
-    java -jar 12XLint.<version>.jar <file1> <file2> ...
+    java -jar 12XLint-<version>jar <file1> <file2> ...
 ```
 
 ### Basic functionality
 - [x] Long line checks
 - [x] Indentation checks (TODO: make indentation 
 - [x] Naming checks (Variable/method/constant/class naming conventions)
-- [ ] Comprehensive testing for all basic functionality
+- [x] Testing for all basic functionality
+- [x] Implement CLI functionality 
 - [ ] Everything else
 
 ### Dependencies:
