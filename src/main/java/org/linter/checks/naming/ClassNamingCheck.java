@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 public class ClassNamingCheck implements Check {
-    private static final String UPPER_CAMEL_CASE_REGEX ="^[A-Z][a-zA-Z0-9]*$";
+    private static final String UPPER_CAMEL_CASE_REGEX = "^[A-Z][a-zA-Z0-9]*$";
     private static final String ERROR_MESSAGE = "Naming: Class declarations must follow UpperCamelCase";
 
     /**
