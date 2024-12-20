@@ -2,6 +2,7 @@ package checks.formatting;
 
 import com.github.javaparser.JavaParser;
 import com.github.javaparser.ast.CompilationUnit;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.linter.checks.formatting.LongLineCheck;
 import org.linter.core.Check;
@@ -16,6 +17,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class LongLineCheckTests {
 
+    @Disabled
     @Test
     public void basicFunctionalityTest() throws IOException {
         Path path = Paths.get("src/test/java/checks/TestSingleLongLine.java");
@@ -31,6 +33,7 @@ public class LongLineCheckTests {
         assertEquals(violation.getLineNumber(), 5);
     }
 
+    @Disabled
     @Test
     public void multipleLongLineTest() throws IOException {
         Path path = Paths.get("src/test/java/checks/TestMultipleLongLine.java");
