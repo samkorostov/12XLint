@@ -16,14 +16,7 @@ import org.linter.checks.naming.ConstantNamingCheck;
 import org.linter.checks.naming.MethodNamingCheck;
 import org.linter.checks.naming.VariableNamingCheck;
 
-/**
- * This class functions as a linter for CSE 12X Teaching assistants at University of Washington
- * The goal for this project is to create an easy way to detect code quality issues in student
- * submissions, improving grading accuracy and cutting down on teaching assistant workload.
- * A teaching assistant will be able to select which aspects of the code quality guideline they
- * want to check for in a given assignment, and this program will output a list of each violation
- * and the line where it occured at.
- */
+
 public class Linter {
 
     private final Check[] checks = {new ConstantNamingCheck(),
