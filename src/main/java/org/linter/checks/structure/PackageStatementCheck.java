@@ -7,7 +7,7 @@ import org.linter.core.Violation;
 import java.util.List;
 import java.util.Optional;
 
-public class PackageStatementCheck extends Check {
+public class PackageStatementCheck implements Check {
     @Override
     public Optional<List<Violation>> apply(CompilationUnit cu) {
         return Optional.empty();

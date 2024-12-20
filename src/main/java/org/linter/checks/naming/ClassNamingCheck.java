@@ -9,9 +9,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class ClassNamingCheck extends Check {
-    private static String UPPER_CAMEL_CASE_REGEX ="^[A-Z][a-zA-Z0-9]*$";
-    private static String ERROR_MESSAGE = "Naming: Class declarations must follow UpperCamelCase";
+public class ClassNamingCheck implements Check {
+    private static final String UPPER_CAMEL_CASE_REGEX ="^[A-Z][a-zA-Z0-9]*$";
+    private static final String ERROR_MESSAGE = "Naming: Class declarations must follow UpperCamelCase";
 
     /**
      * Checks all class declarations in a file to make sure they follow the correct
@@ -31,5 +31,5 @@ public class ClassNamingCheck extends Check {
             }
         });
         return violations.isEmpty() ? Optional.empty() : Optional.of(violations);
-    };
+    }
 }

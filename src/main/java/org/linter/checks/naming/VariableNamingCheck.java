@@ -1,7 +1,6 @@
 package org.linter.checks.naming;
 
 import com.github.javaparser.ast.CompilationUnit;
-import com.github.javaparser.ast.Node;
 import com.github.javaparser.ast.body.FieldDeclaration;
 import com.github.javaparser.ast.body.VariableDeclarator;
 import org.linter.core.Check;
@@ -11,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class VariableNamingCheck extends Check {
+public class VariableNamingCheck implements Check {
     private static final String CAMEL_CASE_REGEX = "^[a-z][a-zA-Z0-9]*$";
     private static final String ERROR_MESSAGE = "Naming: Variables must follow camelCasing";
 
@@ -47,12 +46,10 @@ public class VariableNamingCheck extends Check {
      * @return true if the variable is a constant (static and final), false if not.
      */
     private boolean isConstant(VariableDeclarator variable) {
-        Node parent = variable.getParentNode().orElse(null);
-        if (parent == null || !(parent instanceof FieldDeclaration)) {
-            return false;
-        }
-
-        FieldDeclaration field = (FieldDeclaration) parent;
-        return field.isStatic() && field.isFinal();
+        return variable.getParentNode()
+                .filter(parent -> parent instanceof FieldDeclaration)
+                .map(parent -> (FieldDeclaration) parent)
+                .map (field -> field.isStatic() && field.isFinal())
+                .orElse(false);
     }
 }

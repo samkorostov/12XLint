@@ -1,6 +1,4 @@
 package org.linter.checks.formatting;
-
-import com.github.javaparser.ast.Node;
 import org.linter.core.Check;
 import org.linter.core.Violation;
 
@@ -10,7 +8,7 @@ import java.util.Optional;
 import com.github.javaparser.ast.CompilationUnit;
 import com.github.javaparser.ast.stmt.BlockStmt;
 
-public class IndentationCheck extends Check {
+public class IndentationCheck implements Check {
     private static final int EXPECTED_INDENT = 4;
     private static final String ERROR_MESSAGE = "Inconsistent Indentation";
 
@@ -41,12 +39,4 @@ public class IndentationCheck extends Check {
         });
         return violations.isEmpty() ? Optional.empty() : Optional.of(violations);
     }
-
-    /**
-     * Calculates the expected indentation level for a block of code by traversing all block
-     * statmenets in an abstract syntax tree.
-     * @param node Current block statement to check
-     * @return int value of expected indentation level for a block of code
-     */
-
 }

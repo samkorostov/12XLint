@@ -6,7 +6,7 @@ import org.linter.core.Violation;
 import java.util.List;
 import java.util.Optional;
 
-public class ImportStatementCheck extends Check{
+public class ImportStatementCheck implements Check{
 
     @Override
     public Optional<List<Violation>> apply(CompilationUnit compilationUnit) {

@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class ConstantNamingCheck extends Check {
+public class ConstantNamingCheck implements Check {
     private static final String SCREAMING_CASE_REGEX = "^[A-Z][A-Z0-9_]*$";
     private static final String ERROR_MESSAGE = "Naming: Class constants must follow SCREAMING_CASE";
 

@@ -7,7 +7,7 @@ import org.linter.core.Violation;
 import java.util.List;
 import java.util.Optional;
 
-public class MemberOrderingCheck extends Check {
+public class MemberOrderingCheck implements Check {
     @Override
     public Optional<List<Violation>> apply(CompilationUnit compilationUnit) {
         return Optional.empty();

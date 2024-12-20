@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class MethodNamingCheck extends Check {
+public class MethodNamingCheck implements Check {
     private static final String CAMEL_CASE_REGEX = "^[a-z][a-zA-Z0-9]*$";
     private static final String ERROR_MESSAGE = "Naming: Method declarations must follow camelCasing";
 

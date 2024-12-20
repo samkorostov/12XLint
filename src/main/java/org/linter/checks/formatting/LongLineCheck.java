@@ -12,7 +12,7 @@ import java.util.Optional;
 import com.github.javaparser.ast.CompilationUnit;
 
 
-public class LongLineCheck extends Check{
+public class LongLineCheck implements Check{
     private static final int MAX_LINE_LENGTH = 100;
     private static final String ERROR_MESSAGE = "Long Line";
 
@@ -28,7 +28,7 @@ public class LongLineCheck extends Check{
     public Optional<List<Violation>> apply(CompilationUnit cu) {
         try {
             Optional<CompilationUnit.Storage> storage = cu.getStorage();
-            List<String> lines = new ArrayList<>();
+            List<String> lines;
             if (storage.isPresent()) {
                 Path path = storage.get().getPath();
                 lines = Files.readAllLines(path);

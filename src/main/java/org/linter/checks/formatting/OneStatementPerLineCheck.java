@@ -1,14 +1,13 @@
 package org.linter.checks.formatting;
 
 import com.github.javaparser.ast.CompilationUnit;
-import com.github.javaparser.ast.Node;
 import com.github.javaparser.ast.stmt.*;
 import org.linter.core.Check;
 import org.linter.core.Violation;
 
 import java.util.*;
 
-public class OneStatementPerLineCheck extends Check {
+public class OneStatementPerLineCheck implements Check {
     private final static String ERROR_MESSAGE = "Multiple statements per line";
 
     /**

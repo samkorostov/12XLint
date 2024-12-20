@@ -7,7 +7,7 @@ import org.linter.core.Violation;
 import java.util.List;
 import java.util.Optional;
 
-public class SpacingCheck extends Check {
+public class SpacingCheck implements Check {
     @Override
     public Optional<List<Violation>> apply(CompilationUnit compilationUnit) {
         return Optional.empty();
