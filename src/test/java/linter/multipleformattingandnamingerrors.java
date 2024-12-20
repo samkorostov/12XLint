@@ -22,7 +22,7 @@ public class multipleformattingandnamingerrors { // Class name should be in Pasc
         }
     }
 
-    public void invalid_Method() { // Method naming error
+    public void should_be_Camel_cased() { // Method naming error
         int a = 5; int b = 10;
         for (int i = 0; i < 5; i++) {
             a++; b++;
@@ -32,6 +32,6 @@ public class multipleformattingandnamingerrors { // Class name should be in Pasc
     public static void Main(String[] args) { // Method name should be in camelCase
         multipleformattingandnamingerrors instance = new multipleformattingandnamingerrors();
         instance.validMethod();
-        instance.invalid_Method();
+        instance.should_be_Camel_cased();
     }
 }

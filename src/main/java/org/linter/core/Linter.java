@@ -26,15 +26,17 @@ import org.linter.checks.naming.VariableNamingCheck;
  */
 public class Linter {
 
-    private final List<Check> checks;
+    private final Check[] checks = {new ConstantNamingCheck(),
+                                    new ClassNamingCheck(),
+                                    new MethodNamingCheck(),
+                                    new VariableNamingCheck(),
+                                    new OneStatementPerLineCheck(),
+                                    new LongLineCheck(),
+                                    new IndentationCheck()};
+    private JavaParser parser;
 
-    /**
-     * This will be a linter that lints according to CSE12X code quality guidelines
-     * TODO: Implement selective check adding so quality checks can be adjusted
-     */
-    public Linter(List<Check> checks) {
-        this.checks = checks;
-        // TODO: Implement a way to select which checks to be performed? Maybe a config file?
+    public Linter() {
+        parser = new JavaParser();
     }
 
     /**
@@ -45,7 +47,6 @@ public class Linter {
      */
     public Optional<List<Violation>> lint(Path filepath) {
         try {
-            JavaParser parser = new JavaParser();
             Optional<CompilationUnit> compilationUnit = parser.parse(filepath).getResult();
             if (compilationUnit.isEmpty()) {
                 return Optional.empty();
@@ -53,38 +54,12 @@ public class Linter {
             List<Violation> errors = new ArrayList<>();
             for (Check check : checks) {
                 Optional<List<Violation>> checkResults = check.apply(compilationUnit.get());
-                if (checkResults.isPresent()) {
-                    errors.addAll(checkResults.get());
-                }
+                checkResults.ifPresent(errors::addAll);
             }
             return errors.isEmpty() ? Optional.empty() : Optional.of(errors);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
 
-    }
-
-    /**
-     * This is for testing complete functionality as I go as it's significantly easier to read
-     * output than write an insane amount of assertEquals's.
-     */
-    public static void main(String[] args)  {
-        Path path = Paths.get("src/test/java/linter/multipleformattingandnamingerrors.java");
-        List<Check> checks  = new ArrayList<>();
-        checks.add(new LongLineCheck());
-        checks.add(new IndentationCheck());
-        checks.add(new OneStatementPerLineCheck());
-        checks.add(new VariableNamingCheck());
-        checks.add(new MethodNamingCheck());
-        checks.add(new ConstantNamingCheck());
-        checks.add(new ClassNamingCheck());
-
-
-        Linter linter = new Linter(checks);
-        Optional<List<Violation>> violationList = linter.lint(path);
-        List<Violation> violations = violationList.get();
-        for (Violation violation : violations) {
-            System.out.println(violation);
-        }
     }
 }

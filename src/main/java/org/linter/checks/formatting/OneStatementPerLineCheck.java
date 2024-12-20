@@ -10,11 +10,12 @@ import java.util.*;
 
 public class OneStatementPerLineCheck extends Check {
     private final static String ERROR_MESSAGE = "Multiple statements per line";
+
     /**
-     * This method checks for multiple statements existing on one line. For example,
-     * the line System.out.println(); i++; would be flagged.
-     * @param compilationUnit
-     * @return
+     * Checks for multiple statements on a single line, excluding conditional/loops.
+     * @param cu The AST (Abstract Syntax Tree) created by parsing a file using
+     *                        javaparser
+     * @return A List of all violations of this check, or nothing
      */
     @Override
     public Optional<List<Violation>> apply(CompilationUnit cu) {
@@ -38,6 +39,13 @@ public class OneStatementPerLineCheck extends Check {
        return violations.isEmpty() ? Optional.empty() : Optional.of(violations);
     }
 
+    /**
+     * Helper method to ensure that loop and/or conditional statements do not get flagged
+     * as multiple statements. For example, for (int i = 0; i < 3; i++) should only count
+     * as a single statement, whereas for (int i = 0; i < 3; i++) x++; should count as two.
+     * @param statement The statement to check.
+     * @return true if this statement is within a loop/conditional, false if not.
+     */
     private boolean isLoopOrConditionalStatement(Statement statement) {
         return statement.getParentNode()
                 .filter(parent -> parent instanceof IfStmt || parent instanceof ForStmt ||

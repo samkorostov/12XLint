@@ -10,14 +10,22 @@ import java.util.List;
 import java.util.Optional;
 
 public class ClassNamingCheck extends Check {
-    private static String UPPER_CAMEL_CASE ="^[A-Z][a-zA-Z0-9]*$";
+    private static String UPPER_CAMEL_CASE_REGEX ="^[A-Z][a-zA-Z0-9]*$";
     private static String ERROR_MESSAGE = "Naming: Class declarations must follow UpperCamelCase";
+
+    /**
+     * Checks all class declarations in a file to make sure they follow the correct
+     * naming conventions.
+     * @param cu The AST (Abstract Syntax Tree) created by parsing a file using
+     *                        javaparser
+     * @return A List of all violations of this check, or none
+     */
     @Override
     public Optional<List<Violation>> apply(CompilationUnit cu) {
         List<Violation> violations = new ArrayList<>();
         cu.findAll(ClassOrInterfaceDeclaration.class).forEach(classDeclaration -> {
             String className = classDeclaration.getNameAsString();
-            if (!className.matches(UPPER_CAMEL_CASE)) {
+            if (!className.matches(UPPER_CAMEL_CASE_REGEX)) {
                 classDeclaration.getName().getRange().ifPresent(range ->
                         violations.add(new Violation(ERROR_MESSAGE, range.begin.line)));
             }

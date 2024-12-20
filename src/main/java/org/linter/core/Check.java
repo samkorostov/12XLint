@@ -8,7 +8,7 @@ public abstract class Check {
      * Applies a given check to a file
      * @param cu The AST (Abstract Syntax Tree) created by parsing a file using
      *                        javaparser
-     * @return a List of all the instances of a given check, or nothing
+     * @return a List of all the violations this check, or nothing
      */
     public abstract Optional<List<Violation>> apply(CompilationUnit cu);
 }
